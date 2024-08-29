@@ -23,9 +23,11 @@ app.use(express.json())
 
 // 라우터 설정
 const loginRouter = require('./router/user')
+const boardRouter = require('./router/board')
 
 // 라우터 사용
 app.use('/api/user' , loginRouter)
+app.use('/api/board' , boardRouter)
 
 // 사용자가 요청한 페이지가 없는 경우 에러 처리
 app.use((req, res, next) => { 
