@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const config = require('./config')
 
@@ -18,6 +19,7 @@ mongoose.connect(config.MONGODB_URL)
 .catch( e => console.log(`faild to connect mongodb ${e}`))
 
 // 미들웨어 설정
+app.use(cookieParser())
 app.use(cors(corsOptions))
 app.use(express.json())
 
