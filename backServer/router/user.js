@@ -6,7 +6,7 @@ const User = require('../models/Users')
 
 const { generateToken , isAuth } = require('../auth')
 
-router.post('/login' , expressAsyncHandler(async(req, res, next) => {
+router.post('/login' , expressAsyncHandler(async(req, res) => {
     const loginUser = await User.findOne({
         email : req.body.email ,
         password : req.body.password ,
@@ -23,7 +23,7 @@ router.post('/login' , expressAsyncHandler(async(req, res, next) => {
     }
 }))
 
-router.post('/register' , expressAsyncHandler(async(req, res, next) => {
+router.post('/register' , expressAsyncHandler(async(req, res) => {
     const user = new User({
         email : req.body.email ,
         password : req.body.password ,
