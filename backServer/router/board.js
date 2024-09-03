@@ -74,7 +74,7 @@ router.delete('/:idx', expressAsyncHandler(async(req, res, next) => {
         idx : req.params.idx ,
     })
     if(board) {
-        res.status(200).json({code : 200 , message :'delete Sucess'})
+        res.status(200).json({code : 200 , message :'게시글이 삭제 되었습니다.'})
     }
 }))
 

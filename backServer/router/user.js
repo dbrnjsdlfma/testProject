@@ -6,6 +6,18 @@ const User = require('../models/Users')
 
 const { generateToken , isAuth } = require('../auth')
 
+router.get('/', isAuth, expressAsyncHandler(async(req, res) => {
+    const user = await User.findOne({
+        email : req.user.email ,
+        name : req.user.name ,
+    })
+    if(!user) {
+        res.status(401).json({ code : 401 , message : 'Invalid User Data'})
+    } else {
+        res.status(200).json({ code : 200 , user})
+    }
+}))
+
 router.post('/login' , expressAsyncHandler(async(req, res) => {
     const loginUser = await User.findOne({
         email : req.body.email ,
@@ -54,6 +66,10 @@ router.post('/searchPW' , expressAsyncHandler(async(req, res, next) => {
             code : 200 , 
             message : `${name}님께서 찾으시는 비밀번호는 ${password} 입니다.`})
     }
+}))
+
+router.put('/edit', isAuth, expressAsyncHandler(async(req, res, next) => {
+
 }))
 
 module.exports = router
